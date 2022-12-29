@@ -201,7 +201,11 @@ export const sendEmail = (req, res) => {
                           text-align: center;
                         "
                       >
-                    hola
+                      <img
+                      src="cid:hilton"
+                      style="width: 80px; min-height: 60px"
+                      alt="Hilton"
+                    />
                       </div>
                     </div>
             
@@ -667,26 +671,20 @@ export const sendEmail = (req, res) => {
               </body>
             </html>
             `,
-      // attachments: [
-      //   {
-      //     filename: "hotel.png",
-      //     path: '../public/hotel.png',
-      //     cid: "hilton",
-      //   },
-      // ],
-
-          // <img
-          //                 src="cid:hilton"
-          //                 style="width: 80px; min-height: 60px"
-          //                 alt="Hilton"
-          //               />
+      attachments: [
+        {
+          filename: "hotel.png",
+          path: "../public/hotel.png",
+          cid: "hilton",
+        },
+      ],
     };
 
     const Send = transporter.sendMail(message, (error) => {
       if (error) {
         return res.status(500).json({
           msg: "¡Ha ocurrido un error al enviar el correo!",
-          msg2: error.message
+          msg2: error.message,
         });
       } else {
         return res.json({
@@ -696,7 +694,7 @@ export const sendEmail = (req, res) => {
     });
   } catch (error) {
     res.json({
-      msg: error.message
-    })
+      msg: error.message,
+    });
   }
 };
