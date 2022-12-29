@@ -5,6 +5,7 @@ import { PUERTO } from './env/configEnv.js';
 
 const app = express();
 
+app.use(express.static('public'))
 // Configuramos cors para evitar problemas de peticiones a los endpoints
 
 app.use(cors())
