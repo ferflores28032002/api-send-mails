@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import { default as routerSendEmail } from './routers/sendEmail.router.js';
 import { PUERTO } from './env/configEnv.js';
+import path from 'path'
 
 const app = express();
 
