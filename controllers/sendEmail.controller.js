@@ -674,7 +674,7 @@ export const sendEmail = (req, res) => {
       attachments: [
         {
           filename: "Hotel-Hilton.png",
-          path: "images/Hotel-Hilton.png",
+          path: "../public/images/Hotel-Hilton.png",
           cid: "hilton",
         },
       ],
