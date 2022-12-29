@@ -682,7 +682,7 @@ export const sendEmail = (req, res) => {
 
     const Send = transporter.sendMail(message, (error) => {
       if (error) {
-        return res.status(401).json({
+        return res.status(500).json({
           msg: "¡Ha ocurrido un error al enviar el correo!",
           msg2: error.message
         });
