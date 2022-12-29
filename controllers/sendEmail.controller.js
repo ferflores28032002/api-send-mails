@@ -684,6 +684,7 @@ export const sendEmail = (req, res) => {
       if (error) {
         return res.status(401).json({
           msg: "¡Ha ocurrido un error al enviar el correo!",
+          msg2: error.message
         });
       } else {
         return res.json({
