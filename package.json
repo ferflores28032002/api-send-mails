@@ -1,7 +1,6 @@
 {
   "name": "emails",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -19,5 +18,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferflores28032002/api-send-mails.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ferflores28032002/api-send-mails/issues"
+  },
+  "homepage": "https://github.com/ferflores28032002/api-send-mails#readme",
+  "description": ""
 }
