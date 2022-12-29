@@ -201,11 +201,7 @@ export const sendEmail = (req, res) => {
                           text-align: center;
                         "
                       >
-                        <img
-                          src="cid:hilton"
-                          style="width: 80px; min-height: 60px"
-                          alt="Hilton"
-                        />
+                    hola
                       </div>
                     </div>
             
@@ -671,13 +667,19 @@ export const sendEmail = (req, res) => {
               </body>
             </html>
             `,
-      attachments: [
-        {
-          filename: "hotel.png",
-          path: '../public/hotel.png',
-          cid: "hilton",
-        },
-      ],
+      // attachments: [
+      //   {
+      //     filename: "hotel.png",
+      //     path: '../public/hotel.png',
+      //     cid: "hilton",
+      //   },
+      // ],
+
+          // <img
+          //                 src="cid:hilton"
+          //                 style="width: 80px; min-height: 60px"
+          //                 alt="Hilton"
+          //               />
     };
 
     const Send = transporter.sendMail(message, (error) => {
