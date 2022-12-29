@@ -1,34 +1,47 @@
-import nodemailer from 'nodemailer'
-import { PASSWORD, PORT_SMTP, SERVICE, USER } from '../env/configEnv.js';
+import nodemailer from "nodemailer";
+import { PASSWORD, PORT_SMTP, SERVICE, USER } from "../env/configEnv.js";
 
-// Configuración del smtp para el envio del gmail 
+// Configuración del smtp para el envio del gmail
 var transporter = nodemailer.createTransport({
-    service: SERVICE, 
-    secure: false, 
-    port: PORT_SMTP, 
-    auth: {
-        user: USER,
-        pass: PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
+  service: SERVICE,
+  secure: false,
+  port: PORT_SMTP,
+  auth: {
+    user: USER,
+    pass: PASSWORD,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
-
 export const sendEmail = (req, res) => {
+  const {
+    rfc,
+    businessName,
+    street,
+    nExt,
+    nInt,
+    county,
+    municipality,
+    state,
+    postalCode,
+    country,
+    fullName,
+    voucher,
+    room,
+    dateIn,
+    dateOut,
+    email,
+  } = req.body;
 
-    const { rfc, businessName, street, nExt, nInt, county, municipality, state,
-              postalCode, country, fullName, voucher, room, dateIn, dateOut, email } = req.body;
-
-    try {
-
-        const message = {
-            // from: "Correo@gmail.com", 
-            to: email, 
-            subject: `¡Hola ${fullName}!`,
-            text: "Este es un correo enviado desde nodemailer",
-            html: `<!DOCTYPE html>
+  try {
+    const message = {
+      // from: "Correo@gmail.com",
+      to: email,
+      subject: `¡Hola ${fullName}!`,
+      text: "Este es un correo enviado desde nodemailer",
+      html: `<!DOCTYPE html>
             <html lang="es">
               <head>
                 <meta charset="UTF-8" />
@@ -658,32 +671,29 @@ export const sendEmail = (req, res) => {
               </body>
             </html>
             `,
-            attachments: [
-              {
-                filename: 'Hotel-Hilton.png',
-                path: './public/images/Hotel-Hilton.png',
-                cid: 'hilton'
-              }
-            ]
-        }
+      attachments: [
+        {
+          filename: "Hotel-Hilton.png",
+          path: "./public/images/Hotel-Hilton.png",
+          cid: "hilton",
+        },
+      ],
+    };
 
-        const Send = transporter.sendMail(message, (error) => {
-            if(error) {
-                return res.status(401).json({
-                    msg: "¡Ha ocurrido un error al enviar el correo!"
-                })
-            }else {
-                return res.json({
-                    msg: "¡Correo enviado exitosamente a " + fullName + " !"
-                })
-            }
-            
-        })
-        
-
-    } catch (error) {
-        return res.status(500).json({
-          msg: "No se pudo enviar el correo"
-        })
-    }
-}
+    const Send = transporter.sendMail(message, (error) => {
+      if (error) {
+        return res.status(401).json({
+          msg: "¡Ha ocurrido un error al enviar el correo!",
+        });
+      } else {
+        return res.json({
+          msg: "¡Correo enviado exitosamente a " + fullName + " !",
+        });
+      }
+    });
+  } catch (error) {
+    res.json({
+      msg: error.message
+    })
+  }
+};
