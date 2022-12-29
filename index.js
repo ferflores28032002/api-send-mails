@@ -5,7 +5,8 @@ import { PUERTO } from './env/configEnv.js';
 
 const app = express();
 
-app.use(express.static('public'))
+// función middleware para servir archivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
 // Configuramos cors para evitar problemas de peticiones a los endpoints
 
 app.use(cors())
